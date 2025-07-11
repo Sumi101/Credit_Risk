@@ -50,18 +50,6 @@ if selection == "🏠Dashboard Home":
     fig1.update_layout(xaxis_title='Age',yaxis_title='Income',plot_bgcolor='white',margin=dict(l=40, r=20, t=40, b=40),showlegend=False)
     st.plotly_chart(fig1)
 
-    ownership_types = ["Rent", "Mortgage", "Own", "Other"]
-    df_filtered = df[df['person_home_ownership'].isin(ownership_types)]
-    home_counts = df_filtered['person_home_ownership'].value_counts()
-    total_homes= home_counts.index.tolist()
-    counts = home_counts.values.tolist()
-    fig2 = go.Figure(data=[
-        go.Bar(x=total_homes,y=counts,text=counts,textposition='outside',marker_color=['skyblue', 'lightcoral', 'lightgreen','blue'])])
-    fig2.update_layout(
-        title='Home Ownership Per Age',xaxis_title='Home Ownership',yaxis_title='Age Range',xaxis_tickangle=-45,plot_bgcolor='white',
-        margin=dict(l=40, r=20, t=40, b=40))
-    st.plotly_chart(fig2)
-
     fig3 = px.scatter(df,x='loan_amnt',y='person_income',title='Loan Amount as per Income',color_discrete_sequence=['gray'],)
     fig3.update_traces(marker=dict(line=dict(width=1, color='blue')))
     fig3.update_layout(xaxis_title='Loan Amount',yaxis_title='Income',plot_bgcolor='white',margin=dict(l=40, r=20, t=40, b=40),showlegend=False)
