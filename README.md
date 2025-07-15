@@ -1,7 +1,6 @@
 # Credit Risk Recommendation System
 
 
-
 *Model file: credit_risk_model.pkl
 
 
