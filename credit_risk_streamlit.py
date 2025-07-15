@@ -16,7 +16,7 @@ st.set_page_config(
 # Dataset Loading:
 @st.cache_data
 def load_data():
-    conn = sqlite3.connect('credit_risk.db')
+    conn = sqlite3.connect("credit_risk.db")
     df = pd.read_sql_query("SELECT * FROM credit_risk", conn)
     conn.close()
     return df
@@ -131,6 +131,13 @@ elif selection == "🔮 Predict Credit Risk":
     loan_intent = st.selectbox("Loan Intent", list(loan_intent_map.keys()))
     loan_grade = st.selectbox("Loan Grade", list(loan_grade_map.keys()))
     defaulted_before = st.radio("Previously Defaulted?", list(default_map.keys()))
+
+    # Load Model:
+    @st.cache_resource
+    def load_model():
+        return joblib.load("credit_risk_model.pkl")
+    
+    model = joblib.load("credit_risk_model.pkl")
 
     # Prediction Logic
     if st.button("🔍 Predict Risk"):
