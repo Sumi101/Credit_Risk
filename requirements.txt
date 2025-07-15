@@ -5,5 +5,3 @@ scikit-learn
 matplotlib
 seaborn
 plotly
-joblib
-sqlite3
